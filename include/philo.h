@@ -127,8 +127,7 @@ int	philo_starved(t_philo *philo);
 void	ft_try_sleep(t_philo *philo);
 uint64_t	ft_timeout2(t_philo *philo, uint64_t wait_time);
 void	ft_try_think(t_philo *philo);
-int	ft_take_forks2(t_philo *philo);
-void	ft_try_take_a_fork(t_philo *philo);
+int	ft_try_take_a_fork(t_philo *philo);
 // void	ft_try_take_a_fork(pthread_mutex_t *mutex, int *fork);
 
 

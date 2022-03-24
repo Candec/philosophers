@@ -77,7 +77,6 @@ void	ft_init_thinkers(t_table *table)
 		table->philo[i].last_meal_t = ft_time();
 		table->philo[i].t_sleep = table->t_sleep;
 		table->philo[i].n_meals = table->n_meals;
-		table->philo[i].is_eating = &table->is_eating;
 		table->philo[i].is_alive = &table->is_alive;
 		table->philo[i].fork_left = &table->fork[i];
 		table->philo[i].fork_right = &table->fork[(i + 1) % table->thinkers];
@@ -97,7 +96,6 @@ int	ft_init(t_table *table, char **argv)
 	table->t_eat = ft_atoi(argv[3]);
 	table->t_sleep = ft_atoi(argv[4]);
 	table->is_alive = TRUE;
-	table->is_eating = TRUE;
 	table->start_time = ft_time();
 	if (table->thinkers == 0 || table->t_die == 0 || table->t_eat == 0
 		|| table->t_sleep == 0 || table->n_meals == 0)
