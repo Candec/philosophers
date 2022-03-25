@@ -6,7 +6,7 @@
 /*   By: jibanez- <jibanez-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/06 14:37:45 by jibanez-          #+#    #+#             */
-/*   Updated: 2022/03/25 13:23:07 by jibanez-         ###   ########.fr       */
+/*   Updated: 2022/03/25 13:36:24 by jibanez-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,8 +21,13 @@ int	philo_starved(t_philo *philo)
 
 int	ft_try_take_a_fork(t_philo *philo)
 {
-	pthread_mutex_lock(philo->mutex_left);
-	pthread_mutex_lock(philo->mutex_right);
+	if (pthread_mutex_lock(philo->mutex_left))
+		return (FALSE);
+	if (pthread_mutex_lock(philo->mutex_right))
+	{
+		pthread_mutex_unlock(philo->mutex_left);
+		return (FALSE);
+	}
 	if (*philo->fork_left == TRUE && *philo->fork_right == TRUE)
 	{
 		*philo->fork_left = FALSE;
