@@ -1,14 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_atoi.c                                          :+:      :+:    :+:   */
+/*   utils_2.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jibanez- <jibanez-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/28 19:31:44 by jibanez-          #+#    #+#             */
-/*   Updated: 2021/02/24 15:03:28 by jibanez-         ###   ########.fr       */
+/*   Updated: 2022/03/25 13:23:26 by jibanez-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+#include "../include/philo.h"
 
 static int	ft_isdigit(int c)
 {
@@ -45,4 +47,15 @@ int	ft_atoi(const char *str)
 		i++;
 	}
 	return (result * negative);
+}
+
+uint64_t	ft_timeout(t_philo *philo, uint64_t wait_time)
+{
+	uint64_t	time_to_die;
+
+	time_to_die = philo->t_die - (ft_time() - philo->last_meal_t);
+	if (time_to_die < wait_time)
+		return (time_to_die);
+	else
+		return (wait_time);
 }

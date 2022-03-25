@@ -96,44 +96,27 @@ void		ft_init_thread(t_table *table);
 int			ft_init(t_table *table, char **argv);
 
 /*
-** ft_atoi.c
-*/
-int			ft_atoi(const char *str);
-
-/*
 **	utils.c
 */
-int			ft_eat_timeout(t_philo *philo);
-int			ft_sleep_timeout(t_philo *philo);
-int			ft_take_forks(t_philo *philo);
+void		ft_print(t_philo *philo);
+void		ft_hold_time(uint64_t start, uint64_t action_time);
 void		ft_free_forks(t_philo *philo);
+int			philo_starved(t_philo *philo);
+int			ft_try_take_a_fork(t_philo *philo);
 
 /*
-**	life.c
+** utils_2.c
 */
-int			death_check(t_philo *philo, int is_dead);
-void		*life_cycle(void *philo);
+int			ft_atoi(const char *str);
+uint64_t	ft_timeout(t_philo *philo, uint64_t wait_time);
 
 /*
 **	Paralel_life.c
 */
-void	ft_print2(t_philo *philo);
-void ft_hold_time(uint64_t start, uint64_t action_time);
-uint64_t	ft_delta_time(uint64_t first_time, uint64_t last_time);
-void	ft_try_eat(t_philo *philo);
-void	philo_died(t_philo *philo);
-void *parallel_life(void *p);
-int	philo_starved(t_philo *philo);
-void	ft_try_sleep(t_philo *philo);
-uint64_t	ft_timeout2(t_philo *philo, uint64_t wait_time);
-void	ft_try_think(t_philo *philo);
-int	ft_try_take_a_fork(t_philo *philo);
-// void	ft_try_take_a_fork(pthread_mutex_t *mutex, int *fork);
-
-
-
-// int			ft_dead(t_philo *philo, int diff);
-// int			ft_can_eat(t_philo *philo);
-void		*thread_life(void *philo_struct);
+void		*parallel_life(void *p);
+void		ft_try_eat(t_philo *philo);
+void		ft_try_sleep(t_philo *philo);
+void		ft_try_think(t_philo *philo);
+void		philo_died(t_philo *philo);
 
 #endif

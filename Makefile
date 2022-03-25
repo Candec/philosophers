@@ -8,11 +8,10 @@ OBJ = $(SRC:%.c=$(OBJ_DIR)/%.o)
 
 HEADER = philo.h
 
-SRC = check.c \
-	ft_atoi.c \
-	life.c \
-	philo.c \
+SRC = philo.c\
+	check.c \
 	utils.c \
+	utils_2.c \
 	parallel_life.c \
 
 all: $(NAME)
