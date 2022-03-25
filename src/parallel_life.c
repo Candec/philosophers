@@ -6,7 +6,7 @@
 /*   By: jibanez- <jibanez-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/06 16:14:34 by jibanez-          #+#    #+#             */
-/*   Updated: 2022/03/24 17:25:02 by jibanez-         ###   ########.fr       */
+/*   Updated: 2022/03/24 19:30:07 by jibanez-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,7 @@ void	*parallel_life(void *p)
 		else if (philo->state == SLEEP)
 			ft_try_think(philo);
 	}
+	printf("  %d n meals left: %d\n", philo->id, philo->n_meals);
 	return (p);
 }
 
@@ -54,9 +55,10 @@ void	ft_try_eat(t_philo *philo)
 	{
 		philo->last_meal_t = ft_time();
 		philo->state = EAT;
-		philo->n_meals--;
 		ft_print2(philo);
 		ft_hold_time(philo->last_meal_t, philo->t_eat);
+		if (philo->n_meals == 0)
+			ft_free_forks(philo);
 	}
 }
 
@@ -85,6 +87,7 @@ int	ft_try_take_a_fork(t_philo *philo)
 void	ft_try_sleep(t_philo *philo)
 {
 	philo->state = SLEEP;
+	philo->n_meals--;
 	ft_print2(philo);
 	ft_free_forks(philo);
 	ft_hold_time(ft_time(), ft_timeout2(philo, philo->t_sleep));
@@ -94,8 +97,6 @@ void	ft_try_think(t_philo *philo)
 {
 	philo->state = THINK;
 	ft_print2(philo);
-	usleep(10);
-	// ft_hold_time(ft_time(), ft_timeout2(philo, 0));
 }
 
 void	ft_hold_time(uint64_t start, uint64_t action_time)
