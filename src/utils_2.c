@@ -6,7 +6,7 @@
 /*   By: jibanez- <jibanez-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/28 19:31:44 by jibanez-          #+#    #+#             */
-/*   Updated: 2022/03/25 13:23:26 by jibanez-         ###   ########.fr       */
+/*   Updated: 2022/03/28 12:04:14 by jibanez-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,4 +58,29 @@ uint64_t	ft_timeout(t_philo *philo, uint64_t wait_time)
 		return (time_to_die);
 	else
 		return (wait_time);
+}
+
+int	ft_lock(t_philo *philo)
+{
+	if (philo->id % 2)
+	{
+		if (pthread_mutex_lock(philo->mutex_left))
+			return (FALSE);
+		if (pthread_mutex_lock(philo->mutex_right))
+		{
+			pthread_mutex_unlock(philo->mutex_left);
+			return (FALSE);
+		}
+	}
+	else
+	{
+		if (pthread_mutex_lock(philo->mutex_right))
+			return (FALSE);
+		if (pthread_mutex_lock(philo->mutex_left))
+		{
+			pthread_mutex_unlock(philo->mutex_right);
+			return (FALSE);
+		}
+	}
+	return (TRUE);
 }

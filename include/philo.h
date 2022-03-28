@@ -99,7 +99,7 @@ int			ft_init(t_table *table, char **argv);
 **	utils.c
 */
 void		ft_print(t_philo *philo);
-void		ft_hold_time(uint64_t start, uint64_t action_time);
+void		ft_hold_time(uint64_t start, uint64_t action_time, t_philo *philo);
 void		ft_free_forks(t_philo *philo);
 int			philo_starved(t_philo *philo);
 int			ft_try_take_a_fork(t_philo *philo);
@@ -109,6 +109,7 @@ int			ft_try_take_a_fork(t_philo *philo);
 */
 int			ft_atoi(const char *str);
 uint64_t	ft_timeout(t_philo *philo, uint64_t wait_time);
+int			ft_lock(t_philo *philo);
 
 /*
 **	Paralel_life.c
