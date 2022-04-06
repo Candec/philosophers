@@ -6,7 +6,7 @@
 /*   By: jibanez- <jibanez-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/06 16:14:34 by jibanez-          #+#    #+#             */
-/*   Updated: 2022/03/28 16:07:09 by jibanez-         ###   ########.fr       */
+/*   Updated: 2022/04/06 16:28:21 by jibanez-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ void	*parallel_life(void *p)
 
 void	philo_died(t_philo *philo)
 {
-	if (pthread_mutex_lock(philo->mutex_dead))
+	if (!pthread_mutex_lock(philo->mutex_dead))
 	{
 		if (*philo->is_alive == TRUE)
 		{

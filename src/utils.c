@@ -6,7 +6,7 @@
 /*   By: jibanez- <jibanez-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/06 14:37:45 by jibanez-          #+#    #+#             */
-/*   Updated: 2022/03/28 11:58:37 by jibanez-         ###   ########.fr       */
+/*   Updated: 2022/04/06 16:29:03 by jibanez-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,23 +69,23 @@ void	ft_print(t_philo *philo)
 {
 	pthread_mutex_lock(philo->mutex_printer);
 	if (philo->state == DEAD)
-		printf("%ld %d died\n", ft_time() - philo->start_time, philo->id);
+		printf("%llu %d died\n", ft_time() - philo->start_time, philo->id);
 	if (*philo->is_alive == TRUE)
 	{
 		if (philo->state == EAT)
-			printf("%ld %d is eating\n",
+			printf("%llu %d is eating\n",
 				ft_time() - philo->start_time, philo->id);
 		else if (philo->state == SLEEP)
-			printf("%ld %d is sleeping\n",
+			printf("%llu %d is sleeping\n",
 				ft_time() - philo->start_time, philo->id);
 		else if (philo->state == THINK)
-			printf("%ld %d is thinking\n",
+			printf("%llu %d is thinking\n",
 				ft_time() - philo->start_time, philo->id);
 		else if (philo->state == FORK)
 		{
-			printf("%ld %d has taken a fork\n",
+			printf("%llu %d has taken a fork\n",
 				ft_time() - philo->start_time, philo->id);
-			printf("%ld %d has taken a fork\n",
+			printf("%llu %d has taken a fork\n",
 				ft_time() - philo->start_time, philo->id);
 		}
 		else
