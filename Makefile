@@ -1,6 +1,7 @@
 NAME = philo
 
-CFLAGS = -Wall -Wextra -Werror -pthread -g -fsanitize=thread
+CFLAGS = -Wall -Wextra -Werror -pthread -g 
+# -fsanitize=thread
 AR = ar rcsv
 OBJ_DIR = obj
 SRC_DIR = src

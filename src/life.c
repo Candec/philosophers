@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parallel_life.c                                    :+:      :+:    :+:   */
+/*   life.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jibanez- <jibanez-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/06 16:14:34 by jibanez-          #+#    #+#             */
-/*   Updated: 2022/05/23 11:25:09 by jibanez-         ###   ########.fr       */
+/*   Updated: 2022/05/21 20:04:36 by jibanez-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@ void	*parallel_life(void *p)
 	t_philo	*philo;
 
 	philo = (t_philo *)p;
+	philo->state = THINK;
 	while (philo->state != DEAD && philo->n_meals != 0
 		&& *philo->is_alive == TRUE)
 	{
@@ -50,7 +51,7 @@ void	ft_try_eat(t_philo *philo)
 {
 	if (ft_try_take_a_fork(philo))
 	{
-		philo->last_meal_t = ft_time();
+		philo->last_meal_t = ft_time(philo->start_time);
 		philo->state = EAT;
 		ft_print(philo);
 		ft_hold_time(philo->last_meal_t, philo->t_eat, philo);
@@ -65,12 +66,11 @@ void	ft_try_sleep(t_philo *philo)
 	philo->n_meals--;
 	ft_print(philo);
 	ft_free_forks(philo);
-	ft_hold_time(ft_time(), philo->t_sleep, philo);
+	ft_hold_time(ft_time(philo->start_time), philo->t_sleep, philo);
 }
 
 void	ft_try_think(t_philo *philo)
 {
 	philo->state = THINK;
-	usleep(100);
 	ft_print(philo);
 }
